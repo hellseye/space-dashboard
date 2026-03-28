@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ISS Tracker</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+  <div class="dashboard">
+
+    <div class="header">
+      🚀 SPACE DASHBOARD
+    </div>
+
+    <div id="map"></div>
+
+    <!-- INFO PANEL -->
+    <div class="info-panel">
+      <h3>🛰️ ISS STATUS</h3>
+      <p id="coords">--</p>
+      <p id="speed">--</p>
+      <p id="altitude">--</p>
+      <p id="time">--</p>
+    </div>
+
+  </div>
+
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
