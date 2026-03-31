@@ -1,7 +1,6 @@
 const BASE_URL = "http://localhost:5000/api";
 
-// 🌍 Initialize map
-// const map = L.map("map").setView([20, 0], 2);
+
 const map = L.map("map", {
   center: [20, 0],
   zoom: 2,
@@ -10,10 +9,10 @@ const map = L.map("map", {
     [-90, -180],
     [90, 180]
   ],
-  maxBoundsViscosity: 1.0, // 🔥 locks map
-  worldCopyJump: false // ❌ stop repeating world
+  maxBoundsViscosity: 1.0, 
+  worldCopyJump: false 
 });
-// 🌌 Dark theme map
+
 L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; OpenStreetMap",
   subdomains: "abcd",
@@ -22,7 +21,6 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
 }).addTo(map);
 
 
-// 🛰️ Custom ISS marker (glow + red core)
 const issIcon = L.divIcon({
   className: "",
   html: `
@@ -37,14 +35,11 @@ const issIcon = L.divIcon({
 
 const issMarker = L.marker([0, 0], { icon: issIcon }).addTo(map);
 
-// 🌀 Trail setup
 let path = [];
 const trail = L.polyline(path, { color: "cyan" }).addTo(map);
 
-// 🎯 First load control
 let firstLoad = true;
 
-// 📍 Update trail
 function updatePath(lat, lon) {
   path.push([lat, lon]);
 
@@ -53,7 +48,6 @@ function updatePath(lat, lon) {
   trail.setLatLngs(path);
 }
 
-// 🔄 Fetch ISS position
 async function fetchISS() {
   try {
     const res = await fetch(`${BASE_URL}/iss`);
@@ -77,6 +71,6 @@ async function fetchISS() {
   }
 }
 
-// ⏱️ Update every 5 sec
+
 setInterval(fetchISS, 5000);
 fetchISS();
