@@ -1,13 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+/* 
+ * Legendary Motorsport - GTA V Style Car MarketPlace
+ * Cleaned & Optimized for Final Submission (April 10th)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Satisfy&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
+    /* Brand Colors */
     --gta-red: #b71b1b;
+    --gta-red-glow: rgba(183, 27, 27, 0.4);
     --gta-dark: #0c0c0c;
+    --gta-dark-alt: #121212;
     --gta-border: #2d2d2d;
     --gta-text: #ffffff;
     --gta-money: #4fa055;
     --gta-gray: #7a7a7a;
+    
+    /* Layout Tokens */
     --radius-sm: 2px;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-premium: 0 30px 60px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -21,12 +33,12 @@ body {
     font-family: 'Inter', sans-serif;
     color: var(--gta-text);
     min-height: 100vh;
-    padding: 0;
-    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+/* --- Browser Shell --- */
 
 .browser-window {
     width: 100vw;
@@ -37,7 +49,7 @@ body {
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--shadow-premium);
 }
 
 .browser-top-bar {
@@ -46,40 +58,41 @@ body {
     border-bottom: 1px solid #ccc;
     display: flex;
     align-items: center;
-    padding: 0 10px;
-    gap: 15px;
-    flex-shrink: 0;
+    padding: 0 15px;
+    gap: 20px;
 }
 
 .nav-controls {
     display: flex;
-    gap: 4px;
+    gap: 8px;
 }
 
 .nav-btn {
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 2px 8px;
-    font-size: 12px;
+    background: none;
+    border: none;
+    font-size: 14px;
     color: #999;
     cursor: pointer;
 }
 
-.nav-btn.active {
-    color: #333;
-}
+.nav-btn.active { color: #333; }
 
 .url-bar {
     flex: 1;
+    height: 28px;
     background: #fff;
     border: 1px solid #ccc;
-    height: 24px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     padding: 0 10px;
-    font-size: 13px;
-    color: #333;
     gap: 10px;
+}
+
+.url-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #333;
 }
 
 .money-display {
@@ -94,22 +107,19 @@ body {
     margin-left: auto;
 }
 
-.cash {
-    color: var(--gta-money);
-}
+.cash { color: var(--gta-money); }
+.bank { color: var(--gta-money); }
 
-.bank {
-    color: var(--gta-money);
-}
+/* --- Content Layout --- */
 
 .browser-content {
     flex: 1;
-    background: var(--gta-dark);
+    background: url('./street-view.jpeg') center/cover no-repeat fixed;
+    background-color: #000;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: #000;
 }
 
 .browser-content::before {
@@ -135,12 +145,11 @@ header {
 
 .logo-text {
     font-family: 'Satisfy', cursive;
-    font-weight: 400;
     font-size: 3.5rem;
-    letter-spacing: -1px;
+    font-weight: 400;
     font-style: italic;
     color: #fff;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 2px 2px 0 rgba(0, 0, 0, 1);
+    text-shadow: 0 0 20px rgba(0,0,0,0.8), 2px 2px 0 rgba(0,0,0,1);
     display: inline-block;
 }
 
@@ -148,7 +157,7 @@ header {
     font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
     color: var(--gta-red);
-    text-shadow: 0 0 20px rgba(183, 27, 27, 0.5);
+    text-shadow: 0 0 20px var(--gta-red-glow);
     font-style: normal;
     font-size: 3rem;
     margin-left: 10px;
@@ -164,34 +173,20 @@ header {
     z-index: 10;
 }
 
+.tagline span { color: var(--gta-red); }
 
-.nav-tabs {
-    display: flex;
-    background: #000;
-    border-bottom: 1px solid #333;
+.header-desc {
+    max-width: 800px;
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ccc;
+    position: relative;
+    z-index: 10;
 }
 
-.tab {
-    flex: 1;
-    background: none;
-    border: none;
-    border-right: 1px solid #333;
-    color: #fff;
-    padding: 1rem;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.tab:hover {
-    background: var(--gta-red);
-}
-
-.tab.active {
-    background: #fff;
-    color: #000;
-}
+/* --- Main Dashboard --- */
 
 .main-container {
     padding: 2rem;
@@ -206,11 +201,13 @@ header {
 .title-container {
     background-color: var(--gta-dark);
     width: 100%;
-    height: auto;
-    opacity: 0.8;
+    padding: 10px 0;
+    opacity: 0.9;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gta-border);
+    margin-bottom: 2rem;
 }
 
 .car-title {
@@ -230,30 +227,11 @@ header {
     color: #fff;
     border: none;
     cursor: pointer;
-    transition: filter 0.2s, transform 0.1s;
+    transition: var(--transition-fast);
 }
 
-.sort-btn:hover {
-    filter: brightness(1.2);
-}
-
-.sort-btn:active {
-    transform: scale(0.95);
-}
-
-.result-area {
-    display: block;
-    width: 100%;
-    margin-top: 1rem;
-    height: auto;
-}
-
-.results {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-}
+.sort-btn:hover { filter: brightness(1.2); }
+.sort-btn:active { transform: scale(0.98); }
 
 .search-box {
     display: flex;
@@ -265,10 +243,10 @@ header {
     flex: 1;
     background: #fff;
     border: none;
-    padding: 12px 15px;
+    padding: 15px;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #000;
 }
 
@@ -276,77 +254,87 @@ header {
     background: var(--gta-red);
     color: #fff;
     border: none;
-    padding: 0 2rem;
+    padding: 0 2.5rem;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: var(--transition-fast);
 }
 
-#searchBtn:hover {
-    filter: brightness(1.2);
-}
+#searchBtn:hover { filter: brightness(1.2); }
 
 .message {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 1rem;
+    letter-spacing: 1px;
     color: var(--gta-gray);
     margin-bottom: 2rem;
+    font-size: 12px;
     text-transform: uppercase;
+}
+
+.result-area {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    flex-grow: 1;
 }
 
 .results {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
+
+/* --- Car Card --- */
 
 .car-card {
     background: #fff;
-    border: 1px solid #fff;
+    padding: 10px;
     position: relative;
     cursor: pointer;
-    transition: transform 0.1s;
+    transition: transform var(--transition-fast);
+    border: 1px solid transparent;
 }
 
-.car-card:hover {
-    transform: scale(1.02);
-}
+.car-card:hover { transform: scale(1.02); }
 
 .card-label {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    background: rgba(255, 255, 255, 0.8);
+    top: 15px;
+    left: 15px;
+    background: #fff;
     color: #000;
-    padding: 2px 6px;
-    font-size: 10px;
+    padding: 2px 8px;
+    font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
+    font-size: 10px;
     text-transform: uppercase;
+    z-index: 5;
 }
 
 .card-img {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    display: block;
+    margin-bottom: 10px;
+    background: #eee;
 }
 
 .card-info {
-    background: #fff;
-    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .card-name {
-    color: #000;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
+    color: #000;
     text-transform: uppercase;
-    max-width: 60%;
+    max-width: 70%;
 }
 
 .card-price {
@@ -358,6 +346,7 @@ header {
     font-size: 14px;
 }
 
+/* --- Modal UI --- */
 
 .modal {
     display: none;
@@ -372,96 +361,201 @@ header {
 }
 
 .modal-content {
-    background: #8e0b0b;
-    margin: 5% auto;
+    background: var(--gta-dark-alt);
+    border-top: 5px solid var(--gta-red);
+    margin: 3% auto;
     width: 90%;
-    max-width: 1000px;
-    border: 2px solid #fff;
+    max-width: 1100px;
     position: relative;
-    padding: 2rem;
+    padding: 2.5rem;
+    box-shadow: 0 0 50px rgba(0,0,0,0.9);
 }
 
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 15px;
+    right: 20px;
     color: #fff;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     cursor: pointer;
+    z-index: 110;
 }
 
-.modal-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+.modal-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
 }
 
-.details-left h2 {
+.modal-header-info h2 {
     font-family: 'Rajdhani', sans-serif;
     font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
+.modal-price {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2rem;
+    color: var(--gta-red);
+    font-weight: 700;
+}
+
+.modal-grid {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+}
+
+.details-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .details-left .desc {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #ccc;
     margin-bottom: 1.5rem;
 }
 
-.stats-container {
-    margin-top: 1.5rem;
+.details-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
-.stat-row {
-    margin-bottom: 10px;
+.main-image-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border: 1px solid #333;
+    overflow: hidden;
 }
+
+.main-detail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.seller-info {
+    margin-top: 15px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.seller-info span { color: #ddd; font-weight: 700; }
+
+/* --- Stats System --- */
+
+.stat-row { margin-bottom: 12px; }
 
 .stat-label {
     font-family: 'Rajdhani', sans-serif;
     font-size: 14px;
     font-weight: 700;
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     text-transform: uppercase;
+    color: #999;
 }
 
 .stat-bar {
-    height: 8px;
-    background: rgba(255, 255, 255, 0.2);
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
     width: 100%;
 }
 
 .stat-fill {
     height: 100%;
-    background: #fff;
+    background: var(--gta-red);
+    box-shadow: 0 0 15px var(--gta-red-glow);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
 }
 
 .order-btn {
-    width: 100%;
+    flex: 1;
     background: var(--gta-red);
-    border: 1px solid #fff;
     color: #fff;
-    padding: 1rem;
+    border: none;
+    padding: 1.2rem;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
-    margin-top: 2rem;
     cursor: pointer;
-    box-shadow: 0 4px 0 #6d0a0a;
+    transition: var(--transition-fast);
 }
 
-.order-btn:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #6d0a0a;
+.order-btn:hover { filter: brightness(1.2); }
+
+.vdp-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
 }
 
-.details-right img {
-    width: 100%;
-    border: 1px solid #fff;
+/* --- Technical Specs --- */
+
+.specs-section {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2.5rem;
+    border-top: 1px solid #333;
+    margin-top: 1rem;
 }
+
+.specs-title {
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    color: var(--gta-red);
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.spec-item { display: flex; flex-direction: column; }
+
+.spec-label {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.spec-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* --- Utilities --- */
 
 .spinner {
     display: none;
@@ -474,23 +568,11 @@ header {
     animation: spin 1s linear infinite;
 }
 
-.spinner.active {
-    display: block;
-}
+.spinner.active { display: block; }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-@media (max-width: 768px) {
-    .modal-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .browser-window {
-        height: auto;
-        min-height: 90vh;
-    }
+@media (max-width: 900px) {
+    .modal-grid, .specs-grid { grid-template-columns: 1fr; }
+    .specs-grid { gap: 1rem; }
 }
