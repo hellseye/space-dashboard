@@ -29,16 +29,5 @@ Welcome to the premium destination for the high-end driver. This project is a fu
 2. **Local Run**: Open `index.html` in any modern browser. 
    *(Note: Since this project uses ES6 Modules, it is recommended to run via a local server like `Live Server` or `python -m http.server` to avoid CORS blocks.)*
 
-## 🌐 Deployment Instructions
 
-This project is fully compatible with **GitHub Pages**, **Vercel**, or **Netlify**.
-
-### To Deploy on GitHub Pages:
-1. Go to your repository on GitHub.
-2. Navigate to **Settings** > **Pages**.
-3. Under **Branch**, select `main` (or the branch you're using) and click **Save**.
-4. Your personal "Legendary Motorsport" site will be live at `https://<your-username>.github.io/<repo-name>/` within minutes!
-
----
-**📅 Final Submission Deadline**: 10th April
 **Project Status**: Production Ready / GTA UI Finalized
