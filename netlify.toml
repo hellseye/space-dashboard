@@ -1,0 +1,11 @@
+[build]
+  # During build, Netlify will create a fresh config.js using the MARKETCHECK_API_KEY 
+  # environment variable you added in the dashboard.
+  command = "echo \"export const API_KEY = '$MARKETCHECK_API_KEY';\" > config.js"
+  
+  # The directory where the site is located
+  publish = "."
+
+[build.environment]
+  # Ensures we use modern Node environment if needed
+  NODE_VERSION = "20"
